@@ -192,4 +192,7 @@ h1 {
     background-color: var(--light-blue);
 }
 
+.hidden {
+    display: none;
+}
 
