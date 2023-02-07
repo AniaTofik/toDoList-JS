@@ -63,7 +63,8 @@ const checkClick = e => {
     } else if (e.target.matches('.edit')) {
         editTodo(e)
     } else if (e.target.matches('.delete')) {
-        e.target.closest('li').remove()
+        deleteTodo(e)
+
 }
 }
 
@@ -86,6 +87,14 @@ const changeTodoText = () => {
     popupInfo.textContent = ''
     } else {
         popupInfo.textContent = 'Musisz podać jakąś treść!'
+    }
+}
+
+const deleteTodo = e => {
+    e.target.closest('li').remove()
+    const allTodos = ulList.querySelectorAll('li')
+    if (allTodos.length === 0) {
+        errorInfo.textContent = 'Brak zadań na liście'
     }
 }
 
