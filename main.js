@@ -1,4 +1,4 @@
-let todoInput, erroeInfo, addBtn, ulList, newTodo
+let todoInput, errorInfo, addBtn, ulList, newTodo, popup, popupInfo, todoToEdit, popupInput, popupAddBtn, popupCloseBtn
 
 const main = () => {
     prepareDOMElements()
@@ -9,10 +9,17 @@ const prepareDOMElements = () => {
     errorInfo = document.querySelector('.error-info')
     addBtn = document.querySelector('.btn-add')
     ulList = document.querySelector('.todolist ul')
+    popup = document.querySelector('.popup')
+    popupInfo = document.querySelector('.popup-info')
+    popupInput = document.querySelector('.popup-input')
+    popupAddBtn = document.querySelector('.accept')
+    popupCloseBtn = document.querySelector('.cancel')
     
 }
 const prepareDOMEvents = () => {
     addBtn.addEventListener('click', addTask)
+    ulList.addEventListener('click', checkClick)
+    popupCloseBtn.addEventListener('click', closePopup)
 }
 
 const addTask = () => {
@@ -46,6 +53,25 @@ const createToolsArea = () => {
     btnDelete.innerHTML = '<i class="fas fa-times"></i>'
     
     toolsPanel.append(btnComplete, btnEdit, btnDelete)  
+}
+
+const checkClick = e => {
+    if (e.target.matches('.complete')) {
+        e.target.closest('li').classList.toggle('completed')
+        e.target.classList.toggle('completed')
+    } else if (e.target.matches('.edit')) {
+        editTodo()
+    } else if (e.target.matches('.delete')) {
+        e.target.closest('li').remove()
+}
+}
+
+const editTodo = () => {
+    popup.style.display = "flex"
+}
+
+const closePopup = () => {
+   popup.style.display = "none"
 }
 
 document.addEventListener('DOMContentLoaded', main)
